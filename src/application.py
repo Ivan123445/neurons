@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import subprocess
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap, QColor
@@ -33,7 +34,7 @@ class DlgMain(QDialog):
         self.btnExit = QPushButton("Выход", self)
         self.btnExit.move(30, 300)
         self.btnExit.setFixedSize(250, 50)
-        # self.btnStartAlg.clicked.connect()  # todo exit with delete files
+        self.btnExit.clicked.connect(QApplication.instance().quit)
 
         # img
         self.img_preview = QLabel(self)
@@ -44,7 +45,7 @@ class DlgMain(QDialog):
         self.img_preview.setPixmap(self.pixmap)
 
         # result
-        self.ledResText = QLineEdit("Результат", self)  # todo grey text
+        self.ledResText = QLineEdit("Здесь будет ваш результат", self)  # todo grey text
         self.ledResText.move(300, 380)
         self.ledResText.setFixedSize(600, 60)
 
@@ -66,8 +67,8 @@ class DlgMain(QDialog):
             print("Start alg")
             subprocess.Popen([sys.executable, 'process_image.py'])
             path_file = open("$temp_recognised_char.txt", "r")
-            self.set_result(path_file.read())           # todo remove overlay
-            # os.remove('$temp_path_file.txt')
+            time.sleep(5)
+            self.set_result(path_file.read())
         else:
             print("No file")
             QMessageBox.information(self, "Не найден файл!", "Пожалуйста, выберете файл")

@@ -5,7 +5,7 @@ import cv2
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
-from tensorflow.keras.datasets import mnist         # библиотека базы выборок Mnist
+from tensorflow.keras.datasets import mnist  # библиотека базы выборок Mnist
 from tensorflow import keras
 from tensorflow.keras.layers import Dense, Flatten
 import emnist
@@ -19,7 +19,7 @@ model = keras.models.load_model('../semple/model_char_degit.h5')
 # загрузка изображения
 path_file = open("$temp_path_file.txt", "r")
 image_pil = Image.open(path_file.read())
-# os.remove('$temp_path_file.txt')
+os.remove('$temp_path_file.txt')
 print(path_file.read())
 
 # наклон изображения
@@ -67,8 +67,8 @@ inp = np.array(preprocessed_digits)
 # ----------------------------------------recognising chars--------------------------------------------------------------
 
 diction = {'0': '0', '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', \
-           '10': 'A', '11': 'B', '12': 'C', '13': 'D', '14': 'E', '15': 'F', '16': 'G', '17': 'H', '18':'J', \
-           '33': '*', '34': '/', '38':'?', '45': '?', '46': '+'}
+           '10': 'A', '11': 'B', '12': '(', '13': ')', '14': 'E', '15': 'F', '16': 'G', '17': 'H', '18': '1', \
+           '33': '*', '34': '/', '38': '?', '45': '?', '46': '+'}
 
 my_file = open("$temp_recognised_char.txt", "w+")
 
